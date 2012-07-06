@@ -38,6 +38,6 @@ class Timer(object):
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         self.end = self.timer() # measure end time
-        self.elapsed_secs = self.end - self.start # elapsed time, in seconds
-        self.elapsed_ms = self.elapsed_secs * 1000  # elapsed time, in milliseconds
+        self.elapsed_s = self.end - self.start # elapsed time, in seconds
+        self.elapsed_ms = self.elapsed_s * 1000  # elapsed time, in milliseconds
 
