@@ -1,6 +1,6 @@
 ## A timer as a context manager
 
-When you want to measure the wall clock time of a code snippet, I usually do:
+When one wants to measure the wall clock time of a code snippet, one usually do:
 
     start = time.time()
     # ...
