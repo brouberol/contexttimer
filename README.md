@@ -28,6 +28,7 @@ the exact same thing with a context manager:
 
 ## Example
 
+    >>> from timer import Timer
     >>> with Timer() as t:
     ...     for i in xrange(10000000):
     ...             pass
