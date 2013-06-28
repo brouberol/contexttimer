@@ -2,21 +2,25 @@
 
 When one wants to measure the wall clock time of a code snippet, one usually do:
 
-    start = time.time()
-    # ...
-    # Some code we want to time
-    # ...
-    end = time.time()
-    elapsed = start - end # in secs
-    elapsed_ms = elapsed * 1000 # in ms
+```python
+start = time.time()
+# ...
+# Some code we want to time
+# ...
+end = time.time()
+elapsed = start - end # in secs
+elapsed_ms = elapsed * 1000 # in ms
+```
 
-I find this quite heavy to read and un-pythonic. `timer` allows you to do 
+I find this quite heavy to read and un-pythonic. `timer` allows you to do
 the exact same thing with a context manager:
 
-    with Timer() as t:
-        # Some code we want to time
-    print t.elapsed_s
-    print t.elapsed_ms
+```python
+with Timer() as t:
+    # Some code we want to time
+print t.elapsed_s
+print t.elapsed_ms
+```
 
 ## The timer.Timer class
 `timer.Timer` is a [context manager](http://docs.python.org/reference/datamodel.html#context-managers) with 5 attributes:
@@ -28,16 +32,18 @@ the exact same thing with a context manager:
 
 ## Example
 
-    >>> from timer import Timer
-    >>> with Timer() as t:
-    ...     for i in xrange(10000000):
-    ...             pass
-    ... 
-    >>> print(t.start)
-    1341568310.06
-    >>> print(t.end)
-    1341568310.14
-    >>> print(t.elapsed_ms) 
-    73.6618041992 # in miliseconds
-    >>> print(t.elapsed_s)
-    0.0736618041992 # in seconds
+```python
+>>> from timer import Timer
+>>> with Timer() as t:
+... for i in xrange(10000000):
+... pass
+...
+>>> print(t.start)
+1341568310.06
+>>> print(t.end)
+1341568310.14
+>>> print(t.elapsed_ms)
+73.6618041992 # in miliseconds
+>>> print(t.elapsed_s)
+0.0736618041992 # in seconds
+```
