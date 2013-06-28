@@ -48,3 +48,6 @@ class Timer(object):
         # elapsed time, in ms
         self.elapsed_milliseconds = self.elapsed_seconds * 1000
 
+    def __call__(self):
+        """ Return the current time """
+        return self.timer()
