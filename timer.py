@@ -37,7 +37,14 @@ class Timer(object):
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self.end = self.timer() # measure end time
-        self.elapsed_s = self.end - self.start # elapsed time, in seconds
-        self.elapsed_ms = self.elapsed_s * 1000  # elapsed time, in milliseconds
+        """ Store the start time and calculate the elapsed time (in s and ms)
+
+        """
+        self.end = self.timer()  # measure end time
+
+        # elapsed time, in seconds
+        self.elapsed_seconds = self.end - self.start
+
+        # elapsed time, in ms
+        self.elapsed_milliseconds = self.elapsed_seconds * 1000
 
