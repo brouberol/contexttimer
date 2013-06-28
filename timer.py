@@ -26,9 +26,9 @@ from timeit import default_timer
 class Timer(object):
     """ A timer as a context manager. """
 
-    def __init__(self):
-        self.timer = default_timer
-        # measures wall clock time, not CPU time!
+    def __init__(self, timer=default_timer):
+        self.timer = timer
+        # default_timer measures wall clock time, not CPU time!
         # On Unix systems, it corresponds to time.time
         # On Windows systems, it corresponds to time.clock
 
