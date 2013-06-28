@@ -1,18 +1,18 @@
 #!/usr/bin/env python
-""" 
-Define a Timer context manager, allowing to measure the 
+"""
+Define a Timer context manager, allowing to measure the
 wall time of the code block it contains.
 
 Example:
 >>> with Timer() as timer:
 ...     for i in xrange(10000000):
-...             pass
-... 
+...         pass
+...
 >>> print(timer.start)
 1341568310.06
 >>> print(timer.end)
 1341568310.14
->>> print(timer.elapsed_ms) 
+>>> print(timer.elapsed_ms)
 73.6618041992
 >>> print(timer.elapsed_secs)
 0.0736618041992
@@ -25,9 +25,9 @@ from timeit import default_timer
 
 class Timer(object):
     """ A timer as a context manager. """
-    
+
     def __init__(self):
-        self.timer = default_timer 
+        self.timer = default_timer
         # measures wall clock time, not CPU time!
         # On Unix systems, it corresponds to time.time
         # On Windows systems, it corresponds to time.clock
