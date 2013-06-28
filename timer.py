@@ -17,7 +17,7 @@ Example:
 >>> print(timer.elapsed_secs)
 0.0736618041992
 
-Written by Balthazar Rouberol - <rouberol.b@gmail.com>
+Written by Balthazar Rouberol - <brouberol@imap.cc>
 """
 
 from timeit import default_timer
