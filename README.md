@@ -18,17 +18,17 @@ the exact same thing with a context manager:
 ```python
 with Timer() as t:
     # Some code we want to time
-print t.elapsed_s
-print t.elapsed_ms
+print t.elapsed_seconds
+print t.elapsed_milliseconds
 ```
 
-## The timer.Timer class
-`timer.Timer` is a [context manager](http://docs.python.org/reference/datamodel.html#context-managers) with 5 attributes:
+## The ctimer.Timer class
+`ctimer.Timer` is a [context manager](http://docs.python.org/reference/datamodel.html#context-managers) with 5 attributes:
 * `default_timer`: a platform specific timer function (`time.time` for Unix platforms and `time.clock` for Windows platforms)
 * `start`: the time of the beginning of the execution of the code block, measured with  `default_timer`
 * `end`: the time of the end of the execution of the code block, measured with  `default_timer`
-* `elapsed_s`: the wall clock timing of the execution of the code block, in seconds
-* `elapsed_ms`: the wall clock timing of the execution of the code block, in miliseconds
+* `elapsed_seconds`: the wall clock timing of the execution of the code block, in seconds
+* `elapsed_milliseconds`: the wall clock timing of the execution of the code block, in miliseconds
 
 ## Example
 
@@ -42,8 +42,14 @@ print t.elapsed_ms
 1341568310.06
 >>> print(t.end)
 1341568310.14
->>> print(t.elapsed_ms)
+>>> print(t.elapsed_milliseconds)
 73.6618041992 # in miliseconds
->>> print(t.elapsed_s)
+>>> print(t.elapsed_seconds)
 0.0736618041992 # in seconds
 ```
+
+## Thanks
+Thanks to halloi for its helpful insights and contributions.
+
+## License
+ctimer is released under the GPLv3 license.
