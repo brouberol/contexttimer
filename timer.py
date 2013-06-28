@@ -1,25 +1,24 @@
-#!/usr/bin/env python
 """
-Define a Timer context manager, allowing to measure the
+
+Ctimer - A timer context manager measuring the
 wall time of the code block it contains.
 
-Example:
->>> with Timer() as timer:
-...     for i in xrange(10000000):
-...         pass
-...
->>> print(timer.start)
-1341568310.06
->>> print(timer.end)
-1341568310.14
->>> print(timer.elapsed_ms)
-73.6618041992
->>> print(timer.elapsed_secs)
-0.0736618041992
+Copyright (C) 2013 Balthazar Rouberol - <brouberol@imap.cc>
 
-Written by Balthazar Rouberol - <brouberol@imap.cc>
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 """
-
 from timeit import default_timer
 
 
@@ -33,7 +32,8 @@ class Timer(object):
         # On Windows systems, it corresponds to time.clock
 
     def __enter__(self):
-        self.start = self.timer() # measure start time
+        """ Store the start time """
+        self.start = self.timer()
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
