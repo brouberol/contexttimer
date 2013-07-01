@@ -2,7 +2,7 @@
 A timer as a context manager
 ----------------------------
 
-``ctimer`` provides you with a couple of utilities to quickly measure the execution time of a code block or a function.
+``contexttimer`` provides you with a couple of utilities to quickly measure the execution time of a code block or a function.
 
 Timer as a context manager
 --------------------------
