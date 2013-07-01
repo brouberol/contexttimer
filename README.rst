@@ -16,7 +16,7 @@ The elapsed time is accessible through the ``elasped`` property.
 
 
 The ``contexttimer.Timer`` context manager
-------------------------------------
+------------------------------------------
 ``contexttimer.Timer`` is a `context manager <http://docs.python.org/reference/datamodel.html#context-managers>`_ with 2 parameters and a public property:
 
 * ``default_timer``: a platform specific timer function (``time.time`` for Unix platforms and ``time.clock`` for Windows platforms). You can instanciate a ``Timer`` object with your own timer, by passing it to the constructor.
@@ -26,7 +26,7 @@ The ``contexttimer.Timer`` context manager
 Example
 """""""
 
->>> from timer import Timer
+>>> from contexttimer import Timer
 >>> with Timer() as t:
 ...     for i in xrange(10000000):
 ...         pass
@@ -47,7 +47,7 @@ Note that ``elapsed`` is calculated on demand, so it is possible to time sub-par
 
 
 The ``contexttimer.timer`` function decorator
----------------------------------------
+---------------------------------------------
 
 You can use the ``@timer`` function decorator to measure the time execution of an entire fuction.
 When the function returns its value, its execution time will be printed to the stdout.
