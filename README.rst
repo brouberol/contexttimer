@@ -6,7 +6,7 @@ A timer as a context manager
 
 Timer as a context manager
 --------------------------
-``ctimer.Timer`` is a context manager measuring the execution time of the code block it contains.
+``contexttimer.Timer`` is a context manager measuring the execution time of the code block it contains.
 The elapsed time is accessible through the ``elasped`` property.
 
 >>> with Timer() as t:
@@ -15,9 +15,9 @@ The elapsed time is accessible through the ``elasped`` property.
 # a value in seconds
 
 
-The ``ctimer.Timer`` context manager
+The ``contexttimer.Timer`` context manager
 ------------------------------------
-``ctimer.Timer`` is a [context manager](http://docs.python.org/reference/datamodel.html#context-managers) with 2 parameters and a public property:
+``contexttimer.Timer`` is a `context manager <http://docs.python.org/reference/datamodel.html#context-managers>`_ with 2 parameters and a public property:
 
 * ``default_timer``: a platform specific timer function (``time.time`` for Unix platforms and ``time.clock`` for Windows platforms). You can instanciate a ``Timer`` object with your own timer, by passing it to the constructor.
 * ``factor``: a multiplying factor applied to the ``elapsed`` property. For example, a factor or 1000 will lead to ``elapsed`` being expressed in milliseconds instead of seconds. Default value of 1.
@@ -46,7 +46,7 @@ Note that ``elapsed`` is calculated on demand, so it is possible to time sub-par
 20.567
 
 
-The ``ctimer.timer`` function decorator
+The ``contexttimer.timer`` function decorator
 ---------------------------------------
 
 You can use the ``@timer`` function decorator to measure the time execution of an entire fuction.
@@ -70,4 +70,4 @@ Thanks to halloi and wolanko for their helpful insights and contributions.
 
 License
 -------
-``ctimer`` is released under the GPLv3 license.
+``contexttimer`` is released under the GPLv3 license.
