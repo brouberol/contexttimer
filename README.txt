@@ -20,8 +20,8 @@ The ``ctimer.Timer`` context manager
 ``ctimer.Timer`` is a [context manager](http://docs.python.org/reference/datamodel.html#context-managers) with 2 parameters and a public property:
 
 * ``default_timer``: a platform specific timer function (``time.time`` for Unix platforms and ``time.clock`` for Windows platforms). You can instanciate a ``Timer`` object with your own timer, by passing it to the constructor.
-* ``factor``: a multiplying factor applied to the ``elapsed`` property. For example, a factor or 1000 will lead to ``elapsed`` being expressed in seconds instead of milliseconds. Default value of 1.
-* ``elapsed``: (read only property) the wall clock timing of the execution of the code block, in seconds. By default, expressed in milliseconds.
+* ``factor``: a multiplying factor applied to the ``elapsed`` property. For example, a factor or 1000 will lead to ``elapsed`` being expressed in milliseconds instead of seconds. Default value of 1.
+* ``elapsed``: (read only property) the wall clock timing of the execution of the code block, in seconds. By default, expressed in seconds.
 
 Example
 """""""
