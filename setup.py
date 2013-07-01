@@ -11,7 +11,7 @@ setup(
     description='A timer context manager measuring the clock wall time of the code block it contains.',
     author="Balthazar Rouberol",
     author_email='brouberol@imap.cc',
-    url='https://github.com/brouberol/ctimer',
+    url='https://github.com/brouberol/contexttimer',
     packages=['contexttimer'],
     keywords=['time', 'timer'],
     classifiers=[
