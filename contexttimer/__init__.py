@@ -22,6 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 __version__ = '0.1.0'
 
+
+import functools
+
 from timeit import default_timer
 
 
@@ -78,17 +81,25 @@ class Timer(object):
             return (self.end - self.start) * self.factor
 
 
-def timer(**kwargs):
+def timer(*func_or_func_args, **kwargs):
     """ Function decorator displaying the function execution time
 
     All kwargs are the arguments taken by the Timer class constructor.
 
     """
+    # store Timer kwargs in local variable so the namespace isn't polluted
+    # by different level args and kwargs
+    timer_args, timer_kwargs = func_or_func_args, kwargs
+
     def wrapped_f(f):
-        def wrapped():
-            with Timer(**kwargs) as t:
-                out = f()
+        @functools.wraps(f)
+        def wrapped(*args, **kwargs):
+            with Timer(**timer_kwargs) as t:
+                out = f(*args, **kwargs)
             print u"function %s execution time: %.3f " % (f.__name__, t.elapsed)
             return out
         return wrapped
-    return wrapped_f
+    if len(func_or_func_args) == 1 and callable(func_or_func_args[0]):
+        return wrapped_f(func_or_func_args[0])
+    else:
+        return wrapped_f
