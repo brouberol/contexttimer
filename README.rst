@@ -7,7 +7,7 @@ A timer as a context manager
 Timer as a context manager
 --------------------------
 ``contexttimer.Timer`` is a context manager measuring the execution time of the code block it contains.
-The elapsed time is accessible through the ``elasped`` property.
+The elapsed time is accessible through the ``elapsed`` property.
 
 >>> with Timer() as t:
 ...     # some code here
