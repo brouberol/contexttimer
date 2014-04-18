@@ -30,6 +30,7 @@ from timeit import default_timer
 
 
 class Timer(object):
+
     """ A timer as a context manager
 
     Wraps around a timer. A custom timer can be passed
@@ -40,6 +41,7 @@ class Timer(object):
     On Windows systems, it corresponds to time.clock.
 
     """
+
     def __init__(self, timer=default_timer, factor=1):
         self.timer = timer
         self.factor = factor
@@ -82,7 +84,7 @@ class Timer(object):
             return (self.end - self.start) * self.factor
 
 
-def timer(logger=None, *func_or_func_args, **kwargs):
+def timer(logger=None, *func_or_func_args, **timer_kwargs):
     """ Function decorator displaying the function execution time
 
     All kwargs are the arguments taken by the Timer class constructor.
@@ -90,7 +92,6 @@ def timer(logger=None, *func_or_func_args, **kwargs):
     """
     # store Timer kwargs in local variable so the namespace isn't polluted
     # by different level args and kwargs
-    timer_args, timer_kwargs = func_or_func_args, kwargs
 
     def wrapped_f(f):
         @functools.wraps(f)
@@ -98,13 +99,15 @@ def timer(logger=None, *func_or_func_args, **kwargs):
             with Timer(**timer_kwargs) as t:
                 out = f(*args, **kwargs)
             if logger:
-                logger.debug("function %s execution time: %.3f", f.__name__, t.elapsed)
+                logger.debug(
+                    "function %s execution time: %.3f", f.__name__, t.elapsed)
             else:
-                print("function %s execution time: %.3f " % (f.__name__, t.elapsed))
+                print("function %s execution time: %.3f " %
+                      (f.__name__, t.elapsed))
             return out
         return wrapped
     if (len(func_or_func_args) == 1
-        and isinstance(func_or_func_args[0], collections.Callable)):
+            and isinstance(func_or_func_args[0], collections.Callable)):
         return wrapped_f(func_or_func_args[0])
     else:
         return wrapped_f
@@ -112,10 +115,9 @@ def timer(logger=None, *func_or_func_args, **kwargs):
 if __name__ == "__main__":
     import logging
     import time
-    import sys
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger()
-    
+
     @timer(logger=logging.getLogger())
     def blah():
         time.sleep(2)
