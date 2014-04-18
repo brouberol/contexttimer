@@ -76,7 +76,7 @@ function sleepawhile execution time: 2000.089
 
 Thanks
 ------
-Thanks to halloi and wolanko for their helpful insights and contributions.
+Thanks to halloi, wolanko and Jon Blackburn for their helpful insights and contributions.
 
 License
 -------
