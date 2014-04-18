@@ -50,17 +50,25 @@ The ``contexttimer.timer`` function decorator
 ---------------------------------------------
 
 You can use the ``@timer`` function decorator to measure the time execution of an entire fuction.
-When the function returns its value, its execution time will be printed to the stdout.
+When the function returns its value, its execution time will be printed to the stdout (default), or to the argument logger.
 
 
-Example
-"""""""
+Examples
+""""""""
 >>> @timer
 ... def sleep_for_2s():
 ...     time.sleep(2)
 
 >>> sleep_for_2s()
 function sleep_for_2s execution time: 2.002
+
+>>> logging.basicConfig()
+>>> @timer(logger=logging.getLogger())
+... def sleep_for_2s():
+...     time.sleep(2)
+
+>>> sleep_for_2s()
+DEBUG:root:function blah execution time: 2.002
 
 As it makes use of the ``Timer`` context manager inside, all arguments passed to the ``@timer`` decorator will be used a ``Timer`` init arguments.
 

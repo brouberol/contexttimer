@@ -116,7 +116,6 @@ if __name__ == "__main__":
     import logging
     import time
     logging.basicConfig(level=logging.DEBUG)
-    logger = logging.getLogger()
 
     @timer(logger=logging.getLogger())
     def blah():
