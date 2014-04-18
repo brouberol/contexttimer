@@ -82,7 +82,7 @@ class Timer(object):
             return (self.end - self.start) * self.factor
 
 
-def timer(*func_or_func_args, **kwargs):
+def timer(logger=None, *func_or_func_args, **kwargs):
     """ Function decorator displaying the function execution time
 
     All kwargs are the arguments taken by the Timer class constructor.
@@ -97,7 +97,10 @@ def timer(*func_or_func_args, **kwargs):
         def wrapped(*args, **kwargs):
             with Timer(**timer_kwargs) as t:
                 out = f(*args, **kwargs)
-            print("function %s execution time: %.3f " % (f.__name__, t.elapsed))
+            if logger:
+                logger.debug("function %s execution time: %.3f", f.__name__, t.elapsed)
+            else:
+                print("function %s execution time: %.3f " % (f.__name__, t.elapsed))
             return out
         return wrapped
     if (len(func_or_func_args) == 1
@@ -105,3 +108,16 @@ def timer(*func_or_func_args, **kwargs):
         return wrapped_f(func_or_func_args[0])
     else:
         return wrapped_f
+
+if __name__ == "__main__":
+    import logging
+    import time
+    import sys
+    logging.basicConfig(level=logging.DEBUG)
+    logger = logging.getLogger()
+    
+    @timer(logger=logging.getLogger())
+    def blah():
+        time.sleep(2)
+
+    blah()
