@@ -49,7 +49,7 @@ Note that ``elapsed`` is calculated on demand, so it is possible to time sub-par
 The ``contexttimer.timer`` function decorator
 ---------------------------------------------
 
-You can use the ``@timer`` function decorator to measure the time execution of an entire fuction.
+You can use the ``@timer`` function decorator to measure the time execution of an entire function.
 When the function returns its value, its execution time will be printed to the stdout (default), or to the argument logger.
 
 
@@ -81,6 +81,28 @@ Example:
 ...
 >>> sleepawhile(2)
 function sleepawhile execution time: 2000.089
+
+The ``contexttimer.timeout.timeout`` function decorator
+-------------------------------------------------------
+
+You can use the ``@timeout`` function decorator to stop a function/method call and call a handler if the call exceeds a fixed amount of time.
+
+
+Example:
+""""""""
+
+>>> def timeout_handler(limit, f, *args, **kwargs):
+...     print "{func} call timed out after {lim}s.".format(
+...         func=f.__name__, lim=limit)
+...
+>>> @timeout(limit=5, handler=timeout_handler)
+... def work(foo, bar, baz="spam")
+...     time.sleep(10)
+>>> work("foo", "bar", "baz")
+# time passes...
+work call timed out after 5s.
+>>>
+
 
 Thanks
 ------
