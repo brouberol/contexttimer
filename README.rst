@@ -82,8 +82,8 @@ Example:
 >>> sleepawhile(2)
 function sleepawhile execution time: 2000.089
 
-The ``contexttimer.timeout.timeout`` function decorator
--------------------------------------------------------
+The ``contexttimer.timeout.timeout`` decorator
+----------------------------------------------
 
 You can use the ``@timeout`` function decorator to stop a function/method call and call a handler if the call exceeds a fixed amount of time.
 
