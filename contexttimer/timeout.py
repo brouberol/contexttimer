@@ -34,8 +34,6 @@ class Timeout(Exception):
 def timeout_handler(signum, frame):
     raise Timeout
 
-signal.signal(signal.SIGALRM, timeout_handler)
-
 
 def timeout(limit, handler):
     """A decorator ensuring that the decorated function tun time does not
@@ -65,6 +63,8 @@ def timeout(limit, handler):
     """
     def wrapper(f):
         def wrapped_f(*args, **kwargs):
+            old_handler = signal.getsignal(signal.SIGALRM)
+            signal.signal(signal.SIGALRM, timeout_handler)
             signal.alarm(limit)
             try:
                 res = f(*args, **kwargs)
@@ -73,6 +73,7 @@ def timeout(limit, handler):
             else:
                 return res
             finally:
+                signal.signal(signal.SIGALRM, old_handler)
                 signal.alarm(0)
         return wrapped_f
     return wrapper
