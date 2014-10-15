@@ -1,12 +1,10 @@
-import contexttimer
-
 from os.path import join, dirname
 
 from setuptools import setup
 
 setup(
     name="contexttimer",
-    version=contexttimer.__version__,
+    version='0.3.0',
     license="GPLv3",
     description='A timer context manager measuring the clock wall time of the code block it contains.',
     author="Balthazar Rouberol",
