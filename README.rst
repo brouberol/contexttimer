@@ -27,7 +27,7 @@ Example
 """""""
 
 >>> from contexttimer import Timer
->>> with Timer() as t:
+>>> with Timer(factor=1000) as t:
 ...     for i in xrange(10000000):
 ...         pass
 ...
@@ -36,7 +36,7 @@ Example
 
 Note that ``elapsed`` is calculated on demand, so it is possible to time sub-parts of your code block:
 
->>> with Timer() as t:
+>>> with Timer(factor=1000) as t:
 ...     # do some things
 ...     print t.elapsed
 ...     # do other tings
