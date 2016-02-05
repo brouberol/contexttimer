@@ -40,11 +40,21 @@ class Timer(object):
     On Unix systems, it corresponds to time.time.
     On Windows systems, it corresponds to time.clock.
 
+    Keyword arguments:
+        output -- if True, print output after exiting context.
+                  if callable, pass output to callable.
+        format -- str.format string to be used for output; default "took {} seconds"
+        prefix -- string to prepend (plus a space) to output
+                  For convenience, if you only specify this, output defaults to True.
     """
 
-    def __init__(self, timer=default_timer, factor=1):
+    def __init__(self, timer=default_timer, factor=1,
+                 output=None, fmt="took {:.3f} seconds", prefix=""):
         self.timer = timer
         self.factor = factor
+        self.output = output
+        self.fmt = fmt
+        self.prefix = prefix
         self.end = None
 
     def __call__(self):
@@ -59,6 +69,16 @@ class Timer(object):
     def __exit__(self, exc_type, exc_value, exc_traceback):
         """ Set the end time """
         self.end = self()
+
+        if self.prefix and self.output is None:
+            self.output = True
+
+        if self.output:
+            output = " ".join([self.prefix, self.fmt.format(self.elapsed)])
+            if callable(self.output):
+                self.output(output)
+            else:
+                print output
 
     def __str__(self):
         return '%.3f' % (self.elapsed)
