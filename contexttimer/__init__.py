@@ -79,7 +79,7 @@ class Timer(object):
             if callable(self.output):
                 self.output(output)
             else:
-                print output
+                print(output)
 
     def __str__(self):
         return '%.3f' % (self.elapsed)
