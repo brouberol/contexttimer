@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="contexttimer",
-    version='0.3.2',
+    version='0.3.3',
     license="GPLv3",
     description='A timer context manager measuring the clock wall time of the code block it contains.',
     author="Balthazar Rouberol",
