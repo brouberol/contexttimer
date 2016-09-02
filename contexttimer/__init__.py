@@ -25,6 +25,7 @@ __version__ = '0.3.1'
 
 import functools
 import collections
+import logging
 
 from timeit import default_timer
 
@@ -104,7 +105,9 @@ class Timer(object):
             return (self.end - self.start) * self.factor
 
 
-def timer(logger=None, *func_or_func_args, **timer_kwargs):
+def timer(logger=None, level=logging.INFO,
+          fmt="function %(function_name)s execution time: %(execution_time).3f",
+          *func_or_func_args, **timer_kwargs):
     """ Function decorator displaying the function execution time
 
     All kwargs are the arguments taken by the Timer class constructor.
@@ -119,8 +122,14 @@ def timer(logger=None, *func_or_func_args, **timer_kwargs):
             with Timer(**timer_kwargs) as t:
                 out = f(*args, **kwargs)
             if logger:
-                logger.debug(
-                    "function %s execution time: %.3f", f.__name__, t.elapsed)
+                extra = {
+                    'function_name': f.__name__,
+                    'execution_time': t.elapsed,
+                }
+                logger.log(
+                    level,
+                    fmt % extra,
+                    extra=extra)
             else:
                 print("function %s execution time: %.3f " %
                       (f.__name__, t.elapsed))
