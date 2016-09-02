@@ -105,7 +105,9 @@ class Timer(object):
             return (self.end - self.start) * self.factor
 
 
-def timer(logger=None, level=logging.INFO, *func_or_func_args, **timer_kwargs):
+def timer(logger=None, level=logging.INFO,
+          fmt="function %(function_name)s execution time: %(execution_time).3f",
+          *func_or_func_args, **timer_kwargs):
     """ Function decorator displaying the function execution time
 
     All kwargs are the arguments taken by the Timer class constructor.
@@ -126,9 +128,7 @@ def timer(logger=None, level=logging.INFO, *func_or_func_args, **timer_kwargs):
                 }
                 logger.log(
                     level,
-                    "function %s execution time: %.3f",
-                    f.__name__,
-                    t.elapsed,
+                    fmt % extra,
                     extra=extra)
             else:
                 print("function %s execution time: %.3f " %
