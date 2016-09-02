@@ -6,6 +6,7 @@ Definition of timeout decorators.
 If the clock time of a function/method call, decorated with @timeout,
 exceeds a given limit, a handler will be called and the call will be
 terminated.
+The timeout decorator currently only works in Unix systems.
 
 Copyright (C) 2013 Balthazar Rouberol - <brouberol@imap.cc>
 
