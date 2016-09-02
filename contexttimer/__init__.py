@@ -121,18 +121,17 @@ def timer(logger=None, level=logging.INFO,
         def wrapped(*args, **kwargs):
             with Timer(**timer_kwargs) as t:
                 out = f(*args, **kwargs)
+            context = {
+                'function_name': f.__name__,
+                'execution_time': t.elapsed,
+            }
             if logger:
-                extra = {
-                    'function_name': f.__name__,
-                    'execution_time': t.elapsed,
-                }
                 logger.log(
                     level,
-                    fmt % extra,
-                    extra=extra)
+                    fmt % context,
+                    extra=context)
             else:
-                print("function %s execution time: %.3f " %
-                      (f.__name__, t.elapsed))
+                print(fmt % context)
             return out
         return wrapped
     if (len(func_or_func_args) == 1

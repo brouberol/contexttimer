@@ -27,3 +27,21 @@ class ContextTimerTest(unittest.TestCase):
 
             self.assertIsNotNone(output)
             self.assertRegexpMatches(output.getvalue(), expected)
+
+    def test_decorator_print(self):
+        tests = [
+            ({}, r"function foo execution time: [0-9.]+"),
+            ({'fmt': '%(execution_time)s seconds later...'}, r"[0-9.]+ seconds later..."),
+        ]
+
+
+        for kwargs, expected in tests:
+            output = StringIO()
+            with mock.patch('sys.stdout', new=output):
+                @contexttimer.timer(**kwargs)
+                def foo():
+                    pass
+                foo()
+
+            self.assertIsNotNone(output)
+            self.assertRegexpMatches(output.getvalue(), expected)
