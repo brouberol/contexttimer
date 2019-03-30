@@ -49,13 +49,13 @@ Note that ``elapsed`` is calculated on demand, so it is possible to time sub-par
 The ``contexttimer.timer`` function decorator
 ---------------------------------------------
 
-You can use the ``@timer`` function decorator to measure the time execution of an entire function.
+You can use the ``@timer()`` function decorator to measure the time execution of an entire function.
 When the function returns its value, its execution time will be printed to the stdout (default), or to the argument logger.
 
 
 Examples
 """"""""
->>> @timer
+>>> @timer()
 ... def sleep_for_2s():
 ...     time.sleep(2)
 
