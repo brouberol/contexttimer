@@ -24,7 +24,6 @@ __version__ = '0.3.3'
 
 
 import functools
-import collections
 import logging
 
 from timeit import default_timer
@@ -135,7 +134,7 @@ def timer(logger=None, level=logging.INFO,
             return out
         return wrapped
     if (len(func_or_func_args) == 1
-            and isinstance(func_or_func_args[0], collections.Callable)):
+            and callable(func_or_func_args[0])):
         return wrapped_f(func_or_func_args[0])
     else:
         return wrapped_f
